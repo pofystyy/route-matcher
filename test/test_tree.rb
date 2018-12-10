@@ -4,12 +4,12 @@ require_relative '../lib/tree'
 class AppTest < Minitest::Test
   def setup
     @tree = Tree.new
-    @tree.insert('/my/account/first/')
-    @tree.insert('/ins/kjj/ikj')
+    @tree.insert('/my/account/:first/', 'fdl')
+    @tree.insert('/ins/kjj/ikj', 'hdfk')
   end
 
   def test_presented_route_should_be_true
-    assert_equal true, @tree.have?('/my/account/first/')
+    assert_equal true, @tree.have?('/my/account/77')
   end
 
   def test_presented_route_v2_should_be_true

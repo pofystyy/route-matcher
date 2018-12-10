@@ -6,11 +6,12 @@ class Tree
     @root = Node.new
   end
 
-  def insert(route)
+  def insert(route, name)
     node = @root
 
     elements_from(route).each { |word| node = insert_word(word, node.children) }
     node.term = true
+    node.name = name
   end
 
   def have?(route)
