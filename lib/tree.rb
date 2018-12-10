@@ -9,7 +9,7 @@ class Tree
   def insert(route)
     node = @root
 
-    elements_from(route).map { |word| node = node.insert(word) }
+    elements_from(route).each { |word| node = insert_word(word, node.children) }
     node.term = true
   end
 
@@ -23,5 +23,11 @@ class Tree
 
   def elements_from(route)
     route.split('/').reject(&:empty?)
+  end
+
+  def insert_word(word, node_children)
+    unless node_children.find { |elem| elem.value == word }
+      @root.insert(word, node_children)
+    end
   end
 end

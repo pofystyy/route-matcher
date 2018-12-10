@@ -1,3 +1,5 @@
+require 'pry'
+
 class Node
 
   attr_reader :value, :children
@@ -9,10 +11,8 @@ class Node
     @children = []
   end
 
-  def insert(word)
-    child = Node.new(word)
-    children << child
-    child
+  def insert(word, node_children)
+    Node.new(word).tap { |new_node| node_children << new_node }
   end
 
   def have?(word, node)
