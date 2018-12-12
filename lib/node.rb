@@ -1,7 +1,7 @@
 class Node
 
   attr_reader :value, :children
-  attr_accessor :term, :name
+  attr_accessor :term
 
   def initialize(value = ' ')
     @value    = value
@@ -14,16 +14,10 @@ class Node
   end
 
   def have?(word, node)
-    node.find { |value| value.pattern?(word) }
+    node.find { |value| value.filter(word) }
   end
 
-  def pattern?(word)
-    value[0] == ':' ? hsh(word) : value == word
-  end
-
-  def hsh(word)
-    key = value[1..-1]
-
-    { "#{key}": word }
+  def filter(word)
+    value[0] == ':' ? true : value == word
   end
 end

@@ -6,12 +6,11 @@ class Tree
     @root = Node.new
   end
 
-  def insert(route, name)
+  def insert(route)
     node = @root
 
     elements_from(route).each { |word| node = insert_word(word, node.children) }
     node.term = true
-    node.name = name
   end
 
   def have?(route)
@@ -27,8 +26,6 @@ class Tree
   end
 
   def insert_word(word, node_children)
-    unless node_children.find { |elem| elem.value == word }
-      @root.insert(word, node_children)
-    end
+    node_children.find { |elem| elem.value == word } || @root.insert(word, node_children)
   end
 end
