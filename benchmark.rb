@@ -10,6 +10,4 @@ paths.each do |path|
   tree.insert("#{path}")
 end
 
-p Benchmark.realtime { 1_000.times do
-  tree.have?('grault/qux/baz')
-   end }
+p Benchmark.realtime { 1_000.times { tree.have?('grault/qux/baz') }}
